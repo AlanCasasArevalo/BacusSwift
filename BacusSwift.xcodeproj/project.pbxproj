@@ -15,6 +15,8 @@
 		515CBA9021DA09500004404C /* WineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA8E21DA09500004404C /* WineViewController.swift */; };
 		515CBA9121DA09500004404C /* WineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515CBA8F21DA09500004404C /* WineViewController.xib */; };
 		515CBA9421DA12EC0004404C /* FunctionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA9321DA12EC0004404C /* FunctionUtils.swift */; };
+		515CBA9821DA1EDD0004404C /* WebWineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA9621DA1EDD0004404C /* WebWineViewController.swift */; };
+		515CBA9921DA1EDD0004404C /* WebWineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515CBA9721DA1EDD0004404C /* WebWineViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		515CBA8E21DA09500004404C /* WineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineViewController.swift; sourceTree = "<group>"; };
 		515CBA8F21DA09500004404C /* WineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WineViewController.xib; sourceTree = "<group>"; };
 		515CBA9321DA12EC0004404C /* FunctionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionUtils.swift; sourceTree = "<group>"; };
+		515CBA9621DA1EDD0004404C /* WebWineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebWineViewController.swift; sourceTree = "<group>"; };
+		515CBA9721DA1EDD0004404C /* WebWineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebWineViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 			children = (
 				515CBA8E21DA09500004404C /* WineViewController.swift */,
 				515CBA8F21DA09500004404C /* WineViewController.xib */,
+				515CBA9621DA1EDD0004404C /* WebWineViewController.swift */,
+				515CBA9721DA1EDD0004404C /* WebWineViewController.xib */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -157,6 +163,7 @@
 			files = (
 				515CBA8221DA027E0004404C /* LaunchScreen.storyboard in Resources */,
 				515CBA9121DA09500004404C /* WineViewController.xib in Resources */,
+				515CBA9921DA1EDD0004404C /* WebWineViewController.xib in Resources */,
 				515CBA7F21DA027E0004404C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +179,7 @@
 				515CBA9021DA09500004404C /* WineViewController.swift in Sources */,
 				515CBA8A21DA03950004404C /* WineModel.swift in Sources */,
 				515CBA7821DA027E0004404C /* AppDelegate.swift in Sources */,
+				515CBA9821DA1EDD0004404C /* WebWineViewController.swift in Sources */,
 				515CBA8D21DA06CA0004404C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

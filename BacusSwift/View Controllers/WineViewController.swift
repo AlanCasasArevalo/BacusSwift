@@ -42,15 +42,30 @@ class WineViewController: UIViewController {
         wineCompanyNameLabel.text = wineModel?.wineCompanyName
         typeLabel.text = wineModel?.wineType
         originLabel.text = wineModel?.wineOrigin
-        grapesLabel.text = functionUtils.arrayToString(arrayToConvert: (wineModel?.wineGrapes)!)
-        notesLabel.text = wineModel?.wineNotes
-        winePhotoImageView.image = wineModel?.winePhoto
-        displayRating(rating: (wineModel?.wineRating)!)
         
+        if let grapesToShow = wineModel?.wineGrapes {
+            grapesLabel.text = functionUtils.arrayToString(arrayToConvert: grapesToShow)
+        }else {
+            grapesLabel.text = CONSTANTS.ERROR_DEFAULT_MESSAGE.DEFAULT_GRAPES_TEXT
+        }
+
+        if let notesToShow = wineModel?.wineNotes {
+            notesLabel.text = notesToShow
+        }else {
+            notesLabel.text = CONSTANTS.ERROR_DEFAULT_MESSAGE.DEFAULT_NOTES_TEXT
+        }
+        
+        if let imageToShow = wineModel?.winePhoto {
+            winePhotoImageView.image = imageToShow
+        }else{
+            let dafaultImage = UIImage(named: CONSTANTS.ERROR_DEFAULT_MESSAGE.DEFAULT_IMAGE_NAME)
+            winePhotoImageView.image = dafaultImage
+        }
+        displayRating(rating: (wineModel?.wineRating)!)
     }
 
     fileprivate func displayRating (rating: Int) {
-        let glassRating = UIImage(named: "rating_glass")
+        let glassRating = UIImage(named: CONSTANTS.WINE_MODEL_CONSTANTS.GLASS_RATING_IMAGE_NAME)
         clearAllRatingViews()
 
         if rating <= 0 {
@@ -66,6 +81,13 @@ class WineViewController: UIViewController {
         for imageView: UIImageView in self.ratingViews {
             imageView.image = nil
         }
+    }
+    
+    @IBAction func displayWineCompanyWeb(_ sender: UIButton) {
+        print("Company Web \(self.wineModel?.wineCompanyWeb)")
+        
+        
+        
     }
     
 }
