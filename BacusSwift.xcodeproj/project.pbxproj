@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		515CBA7821DA027E0004404C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA7721DA027E0004404C /* AppDelegate.swift */; };
-		515CBA7A21DA027E0004404C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA7921DA027E0004404C /* ViewController.swift */; };
-		515CBA7D21DA027E0004404C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 515CBA7B21DA027E0004404C /* Main.storyboard */; };
 		515CBA7F21DA027E0004404C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 515CBA7E21DA027E0004404C /* Assets.xcassets */; };
 		515CBA8221DA027E0004404C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 515CBA8021DA027E0004404C /* LaunchScreen.storyboard */; };
 		515CBA8A21DA03950004404C /* WineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA8921DA03950004404C /* WineModel.swift */; };
 		515CBA8D21DA06CA0004404C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA8C21DA06CA0004404C /* Constants.swift */; };
+		515CBA9021DA09500004404C /* WineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA8E21DA09500004404C /* WineViewController.swift */; };
+		515CBA9121DA09500004404C /* WineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515CBA8F21DA09500004404C /* WineViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		515CBA7421DA027E0004404C /* BacusSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BacusSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		515CBA7721DA027E0004404C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		515CBA7921DA027E0004404C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		515CBA7C21DA027E0004404C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		515CBA7E21DA027E0004404C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		515CBA8121DA027E0004404C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		515CBA8321DA027E0004404C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		515CBA8921DA03950004404C /* WineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineModel.swift; sourceTree = "<group>"; };
 		515CBA8C21DA06CA0004404C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		515CBA8E21DA09500004404C /* WineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineViewController.swift; sourceTree = "<group>"; };
+		515CBA8F21DA09500004404C /* WineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WineViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				515CBA7721DA027E0004404C /* AppDelegate.swift */,
-				515CBA7921DA027E0004404C /* ViewController.swift */,
-				515CBA7B21DA027E0004404C /* Main.storyboard */,
+				515CBA9221DA09590004404C /* View Controllers */,
 				515CBA7E21DA027E0004404C /* Assets.xcassets */,
 				515CBA8021DA027E0004404C /* LaunchScreen.storyboard */,
 				515CBA8321DA027E0004404C /* Info.plist */,
@@ -76,6 +75,15 @@
 				515CBA8921DA03950004404C /* WineModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		515CBA9221DA09590004404C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				515CBA8E21DA09500004404C /* WineViewController.swift */,
+				515CBA8F21DA09500004404C /* WineViewController.xib */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				515CBA8221DA027E0004404C /* LaunchScreen.storyboard in Resources */,
+				515CBA9121DA09500004404C /* WineViewController.xib in Resources */,
 				515CBA7F21DA027E0004404C /* Assets.xcassets in Resources */,
-				515CBA7D21DA027E0004404C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +157,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				515CBA9021DA09500004404C /* WineViewController.swift in Sources */,
 				515CBA8A21DA03950004404C /* WineModel.swift in Sources */,
-				515CBA7A21DA027E0004404C /* ViewController.swift in Sources */,
 				515CBA7821DA027E0004404C /* AppDelegate.swift in Sources */,
 				515CBA8D21DA06CA0004404C /* Constants.swift in Sources */,
 			);
@@ -159,14 +167,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		515CBA7B21DA027E0004404C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				515CBA7C21DA027E0004404C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		515CBA8021DA027E0004404C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
