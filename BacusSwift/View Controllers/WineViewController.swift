@@ -33,6 +33,8 @@ class WineViewController: UIViewController {
         }else {
             self.title = "Bacus"
         }
+
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.5, green: 0, blue: 0.13, alpha: 1)
         
         syncronizeViewWithModel()
     }
@@ -71,7 +73,7 @@ class WineViewController: UIViewController {
     }
 
     fileprivate func displayRating (rating: Int) {
-        let glassRating = UIImage(named: CONSTANTS.WINE_MODEL_CONSTANTS.GLASS_RATING_IMAGE_NAME)
+        let glassRating = UIImage(named: CONSTANTS.IMAGE_NAMES.GLASS_RATING_IMAGE_NAME)
         clearAllRatingViews()
 
         if rating <= 0 {
