@@ -14,6 +14,7 @@
 		515CBA8D21DA06CA0004404C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA8C21DA06CA0004404C /* Constants.swift */; };
 		515CBA9021DA09500004404C /* WineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA8E21DA09500004404C /* WineViewController.swift */; };
 		515CBA9121DA09500004404C /* WineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515CBA8F21DA09500004404C /* WineViewController.xib */; };
+		515CBA9421DA12EC0004404C /* FunctionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA9321DA12EC0004404C /* FunctionUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		515CBA8C21DA06CA0004404C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		515CBA8E21DA09500004404C /* WineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineViewController.swift; sourceTree = "<group>"; };
 		515CBA8F21DA09500004404C /* WineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WineViewController.xib; sourceTree = "<group>"; };
+		515CBA9321DA12EC0004404C /* FunctionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +66,7 @@
 				515CBA8021DA027E0004404C /* LaunchScreen.storyboard */,
 				515CBA8321DA027E0004404C /* Info.plist */,
 				515CBA8B21DA039A0004404C /* Models */,
-				515CBA8C21DA06CA0004404C /* Constants.swift */,
+				515CBA9521DA12F30004404C /* Utils */,
 			);
 			path = BacusSwift;
 			sourceTree = "<group>";
@@ -84,6 +86,15 @@
 				515CBA8F21DA09500004404C /* WineViewController.xib */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		515CBA9521DA12F30004404C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				515CBA8C21DA06CA0004404C /* Constants.swift */,
+				515CBA9321DA12EC0004404C /* FunctionUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				515CBA9421DA12EC0004404C /* FunctionUtils.swift in Sources */,
 				515CBA9021DA09500004404C /* WineViewController.swift in Sources */,
 				515CBA8A21DA03950004404C /* WineModel.swift in Sources */,
 				515CBA7821DA027E0004404C /* AppDelegate.swift in Sources */,
