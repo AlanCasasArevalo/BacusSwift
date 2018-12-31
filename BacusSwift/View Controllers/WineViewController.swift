@@ -28,6 +28,12 @@ class WineViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let wineName = wineModel?.wineName {
+            self.title = wineName
+        }else {
+            self.title = "Bacus"
+        }
+        
         syncronizeViewWithModel()
     }
 
@@ -84,10 +90,8 @@ class WineViewController: UIViewController {
     }
     
     @IBAction func displayWineCompanyWeb(_ sender: UIButton) {
-        print("Company Web \(self.wineModel?.wineCompanyWeb)")
-        
-        
-        
+        let webVC = WebWineViewController(wineModel: wineModel!)
+        self.navigationController?.pushViewController(webVC, animated: true)
     }
     
 }

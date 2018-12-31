@@ -22,6 +22,8 @@ class WebWineViewController: UIViewController, WKNavigationDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.title = "Web"
+        
         if let urlWineWeb = wineModel?.wineCompanyWeb {
             displayWineWeb(urlToDisplay: urlWineWeb)
         }else{

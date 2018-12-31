@@ -18,19 +18,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.backgroundColor = UIColor.cyan
         self.window!.makeKeyAndVisible()
-        
+
+        /************************************************************************************
+         * Model and model properties
+         *************************************************************************************/
         let bembibrePhoto = UIImage(named: "bembibre")
         let bembibreCompanyWeb = URL(string: "https://www.dominiodetares.com/portfolio/bembibre/")
         
         let defaultWineModel = WineModel(wineName: "Bembibre", wineCompanyName: "Dominio de Tares", wineType: "tinto", wineNotes: "Este vino muestra toda la complejidad y la elegancia de la variedad Mencía. En fase visual luce un color rojo picota muy cubierto con tonalidades violáceas en el menisco. En nariz aparecen recuerdos frutales muy intensos de frutas rojas (frambuesa, cereza) y una potente ciruela negra, así como tonos florales de la gama de las rosas y violetas, vegetales muy elegantes y complementarios, hojarasca verde, tabaco y maderas aromáticas (sándalo) que le brindan un toque ciertamente perfumado.", wineOrigin: "El Bierzo", winePhoto: bembibrePhoto, wineCompanyWeb: bembibreCompanyWeb, wineGrapes: ["Mencía"], wineRating: 5)
-        
         let defaultWineWithoutProperties = WineModel(wineName: "Bembibre", wineCompanyName: "Dominio de Tares", wineType: "tinto", wineOrigin: "El Bierzo")
+
         
-        let wineViewController = WineViewController(wineModel: defaultWineWithoutProperties)
-        let webWineViewController = WebWineViewController(wineModel: defaultWineWithoutProperties)
+        /************************************************************************************
+         * Main VC
+         *************************************************************************************/
+        let wineViewController = WineViewController(wineModel: defaultWineModel)
+
+        /************************************************************************************
+         * Navigation VC and add wineVC as root
+         *************************************************************************************/
+        let navigationWineVC = UINavigationController(rootViewController: wineViewController)
         
-        // Asign view controller to root window
-        window?.rootViewController = wineViewController
+        /************************************************************************************
+         * Asign view controller to root window
+         *************************************************************************************/
+        window?.rootViewController = navigationWineVC
         return true
     }
 
