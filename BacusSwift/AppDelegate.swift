@@ -60,11 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let wineryTableVC = WineryTableViewController(wineryModel: wineryModel, aTableStyle: .plain)
         
+        let wineryTableNavigationVC = UINavigationController(rootViewController: wineryTableVC)
         
         /************************************************************************************
          * Asign view controller to root window
          *************************************************************************************/
-        window?.rootViewController = wineryTableVC
+        window?.rootViewController = wineryTableNavigationVC
         return true
     }
 
