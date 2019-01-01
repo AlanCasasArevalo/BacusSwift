@@ -70,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let splitVC = UISplitViewController()
         splitVC.viewControllers = [wineryTableNavigationVC, wineNavigationVC]
         
+        splitVC.delegate = wineVC
         
         /************************************************************************************
          * Asign view controller to root window

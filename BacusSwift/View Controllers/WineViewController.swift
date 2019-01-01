@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WineViewController: UIViewController {
+class WineViewController: UIViewController, UISplitViewControllerDelegate {
 
     @IBOutlet weak var winePhotoImageView: UIImageView!
     @IBOutlet var ratingViews: [UIImageView]!
@@ -22,7 +22,11 @@ class WineViewController: UIViewController {
     var wineModel: WineModel?
     var functionUtils = FunctionUtils()
     
-    override func viewDidLoad() { super.viewDidLoad() }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.showHideSplitSBarButton(displayMode: (self.splitViewController?.displayMode)!)
+    }
+    
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
@@ -94,6 +98,18 @@ class WineViewController: UIViewController {
     @IBAction func displayWineCompanyWeb(_ sender: UIButton) {
         let webVC = WebWineViewController(wineModel: wineModel!)
         self.navigationController?.pushViewController(webVC, animated: true)
+    }
+    
+    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewControllerDisplayMode) {
+        showHideSplitSBarButton(displayMode: displayMode)
+    }
+
+    fileprivate func showHideSplitSBarButton(displayMode: UISplitViewControllerDisplayMode) {
+        if displayMode == UISplitViewControllerDisplayMode.primaryHidden {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Baccus", style: .plain, target: self.splitViewController?.displayModeButtonItem.target, action: self.splitViewController?.displayModeButtonItem.action)
+        } else if displayMode == UISplitViewControllerDisplayMode.allVisible {
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
 }
