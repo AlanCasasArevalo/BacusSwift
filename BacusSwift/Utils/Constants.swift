@@ -15,6 +15,7 @@ struct Constants {
     let ERROR_DEFAULT_MESSAGE = ErrorDefaultConstantsMessages()
     let IMAGE_NAMES = ImageName()
     let WEB_COMPANIES_URLS = WebCompaniesURLs()
+    let WINERY_TABLE_VIEW_CONSTANTS = WineryTableViewConstants()
 }
 
 struct WineModelConstants {
@@ -41,6 +42,13 @@ struct ErrorDefaultConstantsMessages {
     let DEFAULT_IMAGE_NAME: String = "no image"
 }
 
+struct WineryTableViewConstants {
+    let WINERY_REUSE_CELL_IDENTIFIER = "WINERY_REUSE_CELL_IDENTIFIER"
+    let RED_WINE_SECTION = 0
+    let WHITE_WINE_SECTION = 1
+    let OTHER_WINE_SECTION = 2
+
+}
 
 
 
