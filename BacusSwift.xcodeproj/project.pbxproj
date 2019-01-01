@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5155C8EC21DB62D600E5B78A /* WineryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5155C8EB21DB62D600E5B78A /* WineryTableViewController.swift */; };
 		515CBA7821DA027E0004404C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515CBA7721DA027E0004404C /* AppDelegate.swift */; };
 		515CBA7F21DA027E0004404C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 515CBA7E21DA027E0004404C /* Assets.xcassets */; };
 		515CBA8221DA027E0004404C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 515CBA8021DA027E0004404C /* LaunchScreen.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5155C8EB21DB62D600E5B78A /* WineryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineryTableViewController.swift; sourceTree = "<group>"; };
 		515CBA7421DA027E0004404C /* BacusSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BacusSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		515CBA7721DA027E0004404C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		515CBA7E21DA027E0004404C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				515CBA8E21DA09500004404C /* WineViewController.swift */,
 				515CBA8F21DA09500004404C /* WineViewController.xib */,
+				5155C8EB21DB62D600E5B78A /* WineryTableViewController.swift */,
 				515CBA9621DA1EDD0004404C /* WebWineViewController.swift */,
 				515CBA9721DA1EDD0004404C /* WebWineViewController.xib */,
 			);
@@ -185,6 +188,7 @@
 				515CBA9821DA1EDD0004404C /* WebWineViewController.swift in Sources */,
 				515CBA8D21DA06CA0004404C /* Constants.swift in Sources */,
 				519E086821DA43C200816C2C /* WineryModel.swift in Sources */,
+				5155C8EC21DB62D600E5B78A /* WineryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
