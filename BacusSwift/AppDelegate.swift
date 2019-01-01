@@ -59,13 +59,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let wineryModel = WineryModel()
         
         let wineryTableVC = WineryTableViewController(wineryModel: wineryModel, aTableStyle: .plain)
-        
         let wineryTableNavigationVC = UINavigationController(rootViewController: wineryTableVC)
+        
+        let wineVC = WineViewController(wineModel: wineryModel.redWineAtIndex(indexPath: 0))
+        let wineNavigationVC = UINavigationController(rootViewController: wineVC)
+        
+        /************************************************************************************
+         * SplitVC
+         *************************************************************************************/
+        let splitVC = UISplitViewController()
+        splitVC.viewControllers = [wineryTableNavigationVC, wineNavigationVC]
+        
         
         /************************************************************************************
          * Asign view controller to root window
          *************************************************************************************/
-        window?.rootViewController = wineryTableNavigationVC
+        window?.rootViewController = splitVC
         return true
     }
 
