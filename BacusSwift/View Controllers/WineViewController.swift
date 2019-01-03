@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WineViewController: UIViewController, UISplitViewControllerDelegate {
+class WineViewController: UIViewController, UISplitViewControllerDelegate, WineryTableViewControllerDelegate {
 
     @IBOutlet weak var winePhotoImageView: UIImageView!
     @IBOutlet var ratingViews: [UIImageView]!
@@ -110,6 +110,12 @@ class WineViewController: UIViewController, UISplitViewControllerDelegate {
         } else if displayMode == UISplitViewControllerDisplayMode.allVisible {
             self.navigationItem.rightBarButtonItem = nil
         }
+    }
+    
+    func wineryTableViewController(wineryTableViewController: WineryTableViewController, didWineSelected: WineModel) {
+        self.wineModel = didWineSelected
+        self.title = didWineSelected.wineName
+        self.syncronizeViewWithModel()
     }
     
 }

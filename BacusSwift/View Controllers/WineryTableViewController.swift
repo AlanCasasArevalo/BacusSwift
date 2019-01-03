@@ -8,7 +8,11 @@
 
 import UIKit
 
-class WineryTableViewController: UITableViewController {
+protocol WineryTableViewControllerDelegate {
+    func wineryTableViewController(wineryTableViewController: WineryTableViewController, didWineSelected: WineModel)
+}
+
+class WineryTableViewController: UITableViewController, WineryTableViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +21,8 @@ class WineryTableViewController: UITableViewController {
     }
     
     let wineryModel: WineryModel?
+    
+    var delegate: WineryTableViewControllerDelegate?
     
     init(wineryModel: WineryModel, aTableStyle: UITableViewStyle) {
         self.wineryModel = wineryModel
@@ -100,12 +106,16 @@ class WineryTableViewController: UITableViewController {
         default:
             wineModelToDetail = wineryModel?.redWineAtIndex(indexPath: 0)
         }
-        
-        let wineDetailVC = WineViewController(wineModel: (wineModelToDetail!))
-        
-        self.navigationController?.pushViewController(wineDetailVC, animated: true)
+
+        self.delegate?.wineryTableViewController(wineryTableViewController: self, didWineSelected: wineModelToDetail!)
         
     }
+    
+    func wineryTableViewController(wineryTableViewController: WineryTableViewController, didWineSelected: WineModel) {
+        let wineVC = WineViewController(wineModel: didWineSelected)
+        self.navigationController?.pushViewController(wineVC, animated: true)
+    }
+
     
     /*
      // Override to support conditional editing of the table view.
