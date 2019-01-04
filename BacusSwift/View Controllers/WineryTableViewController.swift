@@ -109,6 +109,10 @@ class WineryTableViewController: UITableViewController, WineryTableViewControlle
 
         self.delegate?.wineryTableViewController(wineryTableViewController: self, didWineSelected: wineModelToDetail!)
         
+        let wineDictionary = Dictionary<String, WineModel>(dictionaryLiteral: (CONSTANTS.WINERY_NOTIFICATION.WINE_MODEL_KEY, wineModelToDetail!))
+        let notification = Notification(name: Notification.Name(rawValue: CONSTANTS.WINERY_NOTIFICATION.WINE_DID_CHANGE_NOTIFICATION_NAME), object: self, userInfo: wineDictionary)
+        NotificationCenter.default.post(notification)
+        
     }
     
     func wineryTableViewController(wineryTableViewController: WineryTableViewController, didWineSelected: WineModel) {

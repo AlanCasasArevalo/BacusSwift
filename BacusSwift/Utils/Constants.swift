@@ -16,6 +16,7 @@ struct Constants {
     let IMAGE_NAMES = ImageName()
     let WEB_COMPANIES_URLS = WebCompaniesURLs()
     let WINERY_TABLE_VIEW_CONSTANTS = WineryTableViewConstants()
+    let WINERY_NOTIFICATION = WineryNotification()
 }
 
 struct WineModelConstants {
@@ -47,7 +48,11 @@ struct WineryTableViewConstants {
     let RED_WINE_SECTION = 0
     let WHITE_WINE_SECTION = 1
     let OTHER_WINE_SECTION = 2
+}
 
+struct WineryNotification {
+    let WINE_DID_CHANGE_NOTIFICATION_NAME = "WINE_DID_CHANGE_NOTIFICATION_NAME"
+    let WINE_MODEL_KEY = "WINE_MODEL_KEY"
 }
 
 

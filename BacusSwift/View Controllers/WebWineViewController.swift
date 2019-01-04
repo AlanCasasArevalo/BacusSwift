@@ -30,6 +30,23 @@ class WebWineViewController: UIViewController, WKNavigationDelegate {
             displayWineWeb(urlToDisplay: CONSTANTS.ERROR_DEFAULT_MESSAGE.DEFAULT_WEB_TO_SHOW)
         }
         
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(wineDidChanged), name: Notification.Name(rawValue: CONSTANTS.WINERY_NOTIFICATION.WINE_DID_CHANGE_NOTIFICATION_NAME), object: nil)
+        
+    }
+    
+    @objc fileprivate func wineDidChanged (notification: Notification){
+        let dictionary = notification.userInfo
+        let wineUpdated = dictionary?[CONSTANTS.WINERY_NOTIFICATION.WINE_MODEL_KEY]
+        
+        self.wineModel = wineUpdated as? WineModel
+        
+        self.displayWineWeb(urlToDisplay: (wineModel?.wineCompanyWeb)!)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     init(wineModel: WineModel) {
