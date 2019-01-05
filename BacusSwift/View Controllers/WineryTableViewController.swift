@@ -14,6 +14,8 @@ protocol WineryTableViewControllerDelegate {
 
 class WineryTableViewController: UITableViewController, WineryTableViewControllerDelegate {
     
+    let standardDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.WINERY_REUSE_CELL_IDENTIFIER)
@@ -24,7 +26,7 @@ class WineryTableViewController: UITableViewController, WineryTableViewControlle
     
     var delegate: WineryTableViewControllerDelegate?
     
-    init(wineryModel: WineryModel, aTableStyle: UITableViewStyle) {
+    init(wineryModel: WineryModel, aTableStyle: UITableView.Style) {
         self.wineryModel = wineryModel
         super.init(style: aTableStyle)
         self.title = "Baccus"
@@ -110,8 +112,10 @@ class WineryTableViewController: UITableViewController, WineryTableViewControlle
         self.delegate?.wineryTableViewController(wineryTableViewController: self, didWineSelected: wineModelToDetail!)
         
         let wineDictionary = Dictionary<String, WineModel>(dictionaryLiteral: (CONSTANTS.WINERY_NOTIFICATION.WINE_MODEL_KEY, wineModelToDetail!))
-        let notification = Notification(name: Notification.Name(rawValue: CONSTANTS.WINERY_NOTIFICATION.WINE_DID_CHANGE_NOTIFICATION_NAME), object: self, userInfo: wineDictionary)
+        let notification = Notification(name: Notification.Name(rawValue: CONSTANTS.WINERY_NOTIFICATION.DID_SELECT_WINE_NOTIFICATION_NAME), object: self, userInfo: wineDictionary)
         NotificationCenter.default.post(notification)
+        
+        self.saveLastSelectedWineAtIndexSection(section: UInt(indexPath.section), row: UInt(indexPath.row))
         
     }
     
@@ -119,51 +123,57 @@ class WineryTableViewController: UITableViewController, WineryTableViewControlle
         let wineVC = WineViewController(wineModel: didWineSelected)
         self.navigationController?.pushViewController(wineVC, animated: true)
     }
+    
+    func setUserDefaults() -> Dictionary<String, Int> {
+        let defaultsWineCoordinates = [CONSTANTS.WINE_USER_DEFAULTS.SECTION_KEY: CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.RED_WINE_SECTION, CONSTANTS.WINE_USER_DEFAULTS.ROW_KEY: 0]
+        
+        standardDefaults.set(defaultsWineCoordinates, forKey: CONSTANTS.WINE_USER_DEFAULTS.LAST_WINE_KEY)
+        standardDefaults.synchronize()
+        
+        return defaultsWineCoordinates
+    }
 
+    func saveLastSelectedWineAtIndexSection (section: UInt, row: UInt){
+        let coords = [CONSTANTS.WINE_USER_DEFAULTS.SECTION_KEY: section, CONSTANTS.WINE_USER_DEFAULTS.ROW_KEY: row]
+        standardDefaults.set(coords, forKey: CONSTANTS.WINE_USER_DEFAULTS.LAST_WINE_KEY)
+        standardDefaults.synchronize()
+    }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    func lastSelectedWine() -> WineModel {
+        var indexPath = IndexPath(row: 0, section: 0)
+        
+        var coords = standardDefaults.object(forKey: CONSTANTS.WINE_USER_DEFAULTS.LAST_WINE_KEY) as! Dictionary<String, Int>
+        
+        if coords == nil {
+            coords = self.setUserDefaults()
+        }else {
+            let indexPathRow = coords[CONSTANTS.WINE_USER_DEFAULTS.ROW_KEY]
+            let indexPathSection = coords[CONSTANTS.WINE_USER_DEFAULTS.SECTION_KEY]
+
+            indexPath = IndexPath(row: indexPathRow!, section: indexPathSection!)
+        }
+        return self.wineForIndexPath(indexPath: indexPath)
+    }
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func wineForIndexPath(indexPath: IndexPath) -> WineModel {
+        
+        let indexWineSelected: WineModel
+        
+        switch indexPath.section {
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.RED_WINE_SECTION:
+            indexWineSelected = (wineryModel?.redWineAtIndex(indexPath: indexPath.row))!
+
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.WHITE_WINE_SECTION:
+            indexWineSelected = (wineryModel?.whiteWineAtIndex(indexPath: indexPath.row))!
+
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.OTHER_WINE_SECTION:
+            indexWineSelected = (wineryModel?.otherWineAtIndex(indexPath: indexPath.row))!
+
+        default:
+            indexWineSelected = (wineryModel?.redWineAtIndex(indexPath: indexPath.row))!
+        }
+        
+        return indexWineSelected
+    }
     
 }

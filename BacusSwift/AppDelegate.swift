@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.backgroundColor = UIColor.cyan
         self.window!.makeKeyAndVisible()
@@ -61,7 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let wineryTableVC = WineryTableViewController(wineryModel: wineryModel, aTableStyle: .plain)
         let wineryTableNavigationVC = UINavigationController(rootViewController: wineryTableVC)
         
-        let wineVC = WineViewController(wineModel: wineryModel.redWineAtIndex(indexPath: 0))
+        let wineVC = WineViewController(wineModel: wineryTableVC.lastSelectedWine()
+        )
         let wineNavigationVC = UINavigationController(rootViewController: wineVC)
         
         /************************************************************************************

@@ -100,14 +100,14 @@ class WineViewController: UIViewController, UISplitViewControllerDelegate, Winer
         self.navigationController?.pushViewController(webVC, animated: true)
     }
     
-    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewControllerDisplayMode) {
+    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
         showHideSplitSBarButton(displayMode: displayMode)
     }
 
-    fileprivate func showHideSplitSBarButton(displayMode: UISplitViewControllerDisplayMode) {
-        if displayMode == UISplitViewControllerDisplayMode.primaryHidden {
+    fileprivate func showHideSplitSBarButton(displayMode: UISplitViewController.DisplayMode) {
+        if displayMode == UISplitViewController.DisplayMode.primaryHidden {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Baccus", style: .plain, target: self.splitViewController?.displayModeButtonItem.target, action: self.splitViewController?.displayModeButtonItem.action)
-        } else if displayMode == UISplitViewControllerDisplayMode.allVisible {
+        } else if displayMode == UISplitViewController.DisplayMode.allVisible {
             self.navigationItem.rightBarButtonItem = nil
         }
     }

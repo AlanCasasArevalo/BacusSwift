@@ -31,7 +31,7 @@ class WebWineViewController: UIViewController, WKNavigationDelegate {
         }
         
         let center = NotificationCenter.default
-        center.addObserver(self, selector: #selector(wineDidChanged), name: Notification.Name(rawValue: CONSTANTS.WINERY_NOTIFICATION.WINE_DID_CHANGE_NOTIFICATION_NAME), object: nil)
+        center.addObserver(self, selector: #selector(wineDidChanged), name: Notification.Name(rawValue: CONSTANTS.WINERY_NOTIFICATION.DID_SELECT_WINE_NOTIFICATION_NAME), object: nil)
         
     }
     
