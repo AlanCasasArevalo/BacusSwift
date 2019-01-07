@@ -17,7 +17,8 @@ struct Constants {
     let WEB_COMPANIES_URLS = WebCompaniesURLs()
     let WINERY_TABLE_VIEW_CONSTANTS = WineryTableViewConstants()
     let WINERY_NOTIFICATION = WineryNotification()
-    let WINE_USER_DEFAULTS = WineUserDefaults() 
+    let WINE_USER_DEFAULTS = WineUserDefaults()
+    let WINE_SECTIONS_KEY = WineSectionsKey() 
 }
 
 struct WineModelConstants {
@@ -29,6 +30,7 @@ struct ImageName {
     let BEMBIBRE_IMAGE_NAME: String = "bembibre"
     let ALBARINO_IMAGE_NAME: String = "zarate"
     let GUZMAN_IMAGE_NAME: String = "guzman"
+    let DEFAULT_NO_IMAGE_TO_SHOW: String = "no image"
 }
 
 struct WebCompaniesURLs {
@@ -38,7 +40,7 @@ struct WebCompaniesURLs {
 }
 
 struct ErrorDefaultConstantsMessages {
-    let DEFAULT_WEB_TO_SHOW: URL = URL(string: "https://www.google.es")!
+    let DEFAULT_WEB_TO_SHOW: String =  "https://www.google.es"
     let DEFAULT_GRAPES_TEXT: String = "No hay uvas que mostrar"
     let DEFAULT_NOTES_TEXT: String = "No hay notas que mostrar"
     let DEFAULT_IMAGE_NAME: String = "no image"
@@ -48,7 +50,8 @@ struct WineryTableViewConstants {
     let WINERY_REUSE_CELL_IDENTIFIER = "WINERY_REUSE_CELL_IDENTIFIER"
     let RED_WINE_SECTION = 0
     let WHITE_WINE_SECTION = 1
-    let OTHER_WINE_SECTION = 2
+    let ROSE_WINE_SECTION = 2
+    let CHAMPAGNE_WINE_SECTION = 3
 }
 
 struct WineryNotification {
@@ -60,6 +63,14 @@ struct WineUserDefaults {
     let SECTION_KEY = "section"
     let ROW_KEY = "row"
     let LAST_WINE_KEY = "lastWineSelected"
+}
+
+struct WineSectionsKey{
+    let RED_WINE_KEY = "Tinto"
+    let WHITE_WINE_KEY = "Blanco"
+    let ROSE_WINE_KEY = "Rosado"
+    let CHAMPAGNE_WINE_KEY = "Cava"
+
 }
 
 

@@ -54,10 +54,12 @@ class WebWineViewController: UIViewController, WKNavigationDelegate {
         super.init(nibName: nil, bundle: nil)
     }
     
-    fileprivate func displayWineWeb(urlToDisplay: URL) {
+    fileprivate func displayWineWeb(urlToDisplay: String) {
+        let url = URL(string: urlToDisplay)
+        
         self.wineWebView.navigationDelegate = self
         self.startActivityIndicator()
-        let urlRequest = URLRequest(url: urlToDisplay)
+        let urlRequest = URLRequest(url: url!)
         wineWebView.load(urlRequest)
     }
     

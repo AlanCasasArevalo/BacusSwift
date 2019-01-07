@@ -48,8 +48,10 @@ class WineryTableViewController: UITableViewController, WineryTableViewControlle
             return self.wineryModel?.redWineCount() ?? 0
         case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.WHITE_WINE_SECTION:
             return self.wineryModel?.whiteWineCount() ?? 0
-        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.OTHER_WINE_SECTION:
-            return self.wineryModel?.otherWineCount() ?? 0
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.ROSE_WINE_SECTION:
+            return self.wineryModel?.roseWineCount() ?? 0
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.CHAMPAGNE_WINE_SECTION:
+            return self.wineryModel?.champagneWineCount() ?? 0
         default:
             return 0
         }
@@ -70,14 +72,17 @@ class WineryTableViewController: UITableViewController, WineryTableViewControlle
             wineModelToCell = wineryModel?.redWineAtIndex(indexPath: indexPath.row)
         case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.WHITE_WINE_SECTION:
             wineModelToCell = wineryModel?.whiteWineAtIndex(indexPath: indexPath.row)
-        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.OTHER_WINE_SECTION:
-            wineModelToCell = wineryModel?.otherWineAtIndex(indexPath: indexPath.row)
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.ROSE_WINE_SECTION:
+            wineModelToCell = wineryModel?.roseWineAtIndex(indexPath: indexPath.row)
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.CHAMPAGNE_WINE_SECTION:
+            wineModelToCell = wineryModel?.champagneWineAtIndex(indexPath: indexPath.row)
         default:
             wineModelToCell = wineryModel?.redWineAtIndex(indexPath: 0)
         }
         
-        wineryCell.textLabel?.text = wineModelToCell?.wineName;
-        wineryCell.detailTextLabel?.text = wineModelToCell?.wineCompanyName;
+        wineryCell.imageView?.image = wineModelToCell?.winePhoto
+        wineryCell.textLabel?.text = wineModelToCell?.wineName
+        wineryCell.detailTextLabel?.text = wineModelToCell?.wineCompanyName
         
         return wineryCell
     }
@@ -88,8 +93,10 @@ class WineryTableViewController: UITableViewController, WineryTableViewControlle
             return "Red wines"
         case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.WHITE_WINE_SECTION:
             return "White wines"
-        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.OTHER_WINE_SECTION:
-            return "Other wines"
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.ROSE_WINE_SECTION:
+            return "Rose wines"
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.CHAMPAGNE_WINE_SECTION:
+            return "Champagne wines"
         default:
             return "Red wines"
         }
@@ -103,8 +110,10 @@ class WineryTableViewController: UITableViewController, WineryTableViewControlle
             wineModelToDetail = wineryModel?.redWineAtIndex(indexPath: indexPath.row)
         case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.WHITE_WINE_SECTION:
             wineModelToDetail = wineryModel?.whiteWineAtIndex(indexPath: indexPath.row)
-        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.OTHER_WINE_SECTION:
-            wineModelToDetail = wineryModel?.otherWineAtIndex(indexPath: indexPath.row)
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.ROSE_WINE_SECTION:
+            wineModelToDetail = wineryModel?.roseWineAtIndex(indexPath: indexPath.row)
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.CHAMPAGNE_WINE_SECTION:
+            wineModelToDetail = wineryModel?.champagneWineAtIndex(indexPath: indexPath.row)
         default:
             wineModelToDetail = wineryModel?.redWineAtIndex(indexPath: 0)
         }
@@ -162,12 +171,12 @@ class WineryTableViewController: UITableViewController, WineryTableViewControlle
         switch indexPath.section {
         case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.RED_WINE_SECTION:
             indexWineSelected = (wineryModel?.redWineAtIndex(indexPath: indexPath.row))!
-
         case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.WHITE_WINE_SECTION:
             indexWineSelected = (wineryModel?.whiteWineAtIndex(indexPath: indexPath.row))!
-
-        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.OTHER_WINE_SECTION:
-            indexWineSelected = (wineryModel?.otherWineAtIndex(indexPath: indexPath.row))!
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.ROSE_WINE_SECTION:
+            indexWineSelected = (wineryModel?.roseWineAtIndex(indexPath: indexPath.row))!
+        case CONSTANTS.WINERY_TABLE_VIEW_CONSTANTS.CHAMPAGNE_WINE_SECTION:
+            indexWineSelected = (wineryModel?.champagneWineAtIndex(indexPath: indexPath.row))!
 
         default:
             indexWineSelected = (wineryModel?.redWineAtIndex(indexPath: indexPath.row))!
