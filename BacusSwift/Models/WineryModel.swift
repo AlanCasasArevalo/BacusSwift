@@ -12,30 +12,101 @@ struct WineryModel {
     
     var redWines: [WineModel] = [WineModel]()
     var whiteWines: [WineModel] = [WineModel]()
-    var otherWines: [WineModel] = [WineModel]()
+    var roseWines: [WineModel] = [WineModel]()
+    var champagneWines: [WineModel] = [WineModel]()
     
     init() {
         
-        /************************************************************************************
-         * Model and model properties
-         *************************************************************************************/
-        let bembibrePhoto = UIImage(named: CONSTANTS.IMAGE_NAMES.BEMBIBRE_IMAGE_NAME)
-        let albarinoPhoto = UIImage(named: CONSTANTS.IMAGE_NAMES.ALBARINO_IMAGE_NAME)
-        let guzmanPhoto = UIImage(named: CONSTANTS.IMAGE_NAMES.GUZMAN_IMAGE_NAME)
+        var customError: NSError?
+        var errorDefaultMessage = "Ha habido un error al intentar hacer la conversion de JSON e inicializarlo dentro de los vinos"
         
-        let bembibreCompanyWeb = CONSTANTS.WEB_COMPANIES_URLS.BEMBIBRE_COMPANY_WEB
-        let albarinoCompanyWeb = CONSTANTS.WEB_COMPANIES_URLS.ALBARINO_COMPANY_WEB
-        let guzmanCompanyWeb = CONSTANTS.WEB_COMPANIES_URLS.GUZMAN_COMPANY_WEB
+        let urlString = "http://static.keepcoding.io/baccus/wines.json"
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+        guard var backendUrl = URL(string: urlString) else {return}
         
-        let bembibreWineModel = WineModel(wineName: "Bembibre", wineCompanyName: "Dominio de Tares", wineType: "tinto", wineNotes: "Este vino muestra toda la complejidad y la elegancia de la variedad Mencía. En fase visual luce un color rojo picota muy cubierto con tonalidades violáceas en el menisco. En nariz aparecen recuerdos frutales muy intensos de frutas rojas (frambuesa, cereza) y una potente ciruela negra, así como tonos florales de la gama de las rosas y violetas, vegetales muy elegantes y complementarios, hojarasca verde, tabaco y maderas aromáticas (sándalo) que le brindan un toque ciertamente perfumado.", wineOrigin: "El Bierzo", winePhoto: bembibrePhoto, wineCompanyWeb: bembibreCompanyWeb, wineGrapes: ["Mencía"], wineRating: 5)
+        var request = URLRequest(url: backendUrl)
+        request.httpMethod = "GET"
+        //        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+        //            let statusCode = (response as! HTTPURLResponse).statusCode
+        //            guard let dataDes = data else {return}
+        //            if (error == nil) {
+        //                do{
+        //                    print("URL Session Usage Task Succeeded: HTTP \(statusCode)")
+        //                    let json = try JSONDecoder().decode(Usage.self, from: dataDes)
+        //                    completion(json, statusCode)
+        //                }catch{
+        //                    completion(nil, statusCode)
+        //                }
+        //            }else {
+        //                print("URL Session Task Failed: %@", error!.localizedDescription);
+        //                completion(nil, statusCode)
+        //            }
+        //        })
+        //        task.resume()
         
-        let albarinoWineModel = WineModel(wineName: "Zarate", wineCompanyName: "Zarate", wineType: "Blanco", wineNotes: "El albariño Zarate es un vino blanco monovarietal que pertenece a la Denominación de Origen Rías Baixas. Considerado por la crítica especializada como uno de los grandes vinos blancos del mundo, el albariño ya es todo un mito.", wineOrigin: "Rias Bajas", winePhoto: albarinoPhoto, wineCompanyWeb: albarinoCompanyWeb, wineGrapes: ["Albariño"], wineRating: 4)
+        var dataJsonResult = NSData(contentsOf: backendUrl) as? Data
         
-        let guzmanWineModel = WineModel(wineName: "Raiz de Guzman", wineCompanyName: "Raiz de Guzman", wineType: "Rosado", wineNotes: "Raíz de Guzmán son vinos con denominación de origen Ribera del Duero elaborados con uva 100% tempranillo en la localidad burgalesa de Roa de Duero. Tradición e innovación se funden en su elaboración y se traducen, al término del proceso, en productos exclusivos y de altísima calidad, la seña de identidad de la casa.", wineOrigin: "Ribera del Duero", winePhoto: guzmanPhoto, wineCompanyWeb: guzmanCompanyWeb, wineGrapes: ["Chardonnay"], wineRating: 3)
-        
-        redWines.append(bembibreWineModel)
-        whiteWines.append(albarinoWineModel)
-        otherWines.append(guzmanWineModel)
+        if dataJsonResult == nil {
+            customError = NSError(domain: "Baccus.Model", code: 42, userInfo: [NSLocalizedDescriptionKey: errorDefaultMessage])
+        } else {
+            
+            do {
+                //                let jsonResult = try JSONSerialization.jsonObject(with: dataJsonResult, options: []) as! [String: AnyObject]
+
+                let jsonObject = try JSONSerialization.jsonObject(with: dataJsonResult!, options: JSONSerialization.ReadingOptions.allowFragments) as! [Dictionary<String,Any>]
+
+                if jsonObject != nil {
+                                                            
+                    for jsonWineDictionary in jsonObject {
+                        
+                        if jsonWineDictionary["name"] == nil {
+                            customError = NSError(domain: "Baccus.Model", code: 42, userInfo: [NSLocalizedDescriptionKey: errorDefaultMessage])
+                        } else{
+                            let wineFromJson = WineModel(aDictionary: jsonWineDictionary)
+                            
+                            if wineFromJson.wineName != nil {
+                                if wineFromJson.wineType == CONSTANTS.WINE_SECTIONS_KEY.RED_WINE_KEY {
+                                    if self.redWines == nil {
+                                        redWines = [WineModel]()
+                                        redWines.append(wineFromJson)
+                                    }else {
+                                        redWines.append(wineFromJson)
+                                    }
+                                    
+                                }else if wineFromJson.wineType == CONSTANTS.WINE_SECTIONS_KEY.WHITE_WINE_KEY {
+                                    if self.whiteWines == nil {
+                                        whiteWines = [WineModel]()
+                                        whiteWines.append(wineFromJson)
+                                    }else {
+                                        whiteWines.append(wineFromJson)
+                                    }
+                                }else if wineFromJson.wineType == CONSTANTS.WINE_SECTIONS_KEY.ROSE_WINE_KEY {
+                                    if self.roseWines == nil {
+                                        roseWines = [WineModel]()
+                                        roseWines.append(wineFromJson)
+                                    }else {
+                                        roseWines.append(wineFromJson)
+                                    }
+                                }else if wineFromJson.wineType == CONSTANTS.WINE_SECTIONS_KEY.CHAMPAGNE_WINE_KEY {
+                                    if self.champagneWines == nil {
+                                        champagneWines = [WineModel]()
+                                        champagneWines.append(wineFromJson)
+                                    }else {
+                                        champagneWines.append(wineFromJson)
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                    
+                }
+                
+            } catch let error as NSError {
+                print("Failed to load: \(error.localizedDescription)")
+            }
+        }
         
     }
     
@@ -47,8 +118,12 @@ struct WineryModel {
         return whiteWines.count
     }
     
-    func otherWineCount() -> Int {
-        return otherWines.count
+    func roseWineCount() -> Int {
+        return roseWines.count
+    }
+    
+    func champagneWineCount() -> Int {
+        return champagneWines.count
     }
     
     func redWineAtIndex(indexPath: Int) -> WineModel {
@@ -59,8 +134,11 @@ struct WineryModel {
         return self.whiteWines[indexPath]
     }
     
-    func otherWineAtIndex(indexPath: Int) -> WineModel {
-        return self.otherWines[indexPath]
+    func roseWineAtIndex(indexPath: Int) -> WineModel {
+        return self.roseWines[indexPath]
+    }
+    func champagneWineAtIndex(indexPath: Int) -> WineModel {
+        return self.champagneWines[indexPath]
     }
     
 }
