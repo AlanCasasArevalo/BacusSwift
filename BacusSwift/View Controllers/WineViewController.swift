@@ -24,7 +24,9 @@ class WineViewController: UIViewController, UISplitViewControllerDelegate, Winer
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showHideSplitSBarButton(displayMode: (self.splitViewController?.displayMode)!)
+        if ((splitViewController?.displayMode) != nil) {
+            self.showHideSplitSBarButton(displayMode: (self.splitViewController?.displayMode)!)
+        }
     }
     
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
